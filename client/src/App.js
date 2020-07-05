@@ -1,24 +1,15 @@
 import React from "react";
-import Nav from "./component/Nav";
-import BGImg from "./component/BGImg";
-import Button from "./component/Button";
-import logo from "./logo.svg";
+import Join from "./components/Join/Join";
+import Chat from "./components/Chat/Chat";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import "./App.scss";
 
-function App() {
-  return (
-    <>
-      <BGImg />
-      <Nav />
-      <Button />
-    </>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>Chat App for Seniors</p>
-    //   </header>
-    // </div>
-  );
-}
+const App = () => (
+  <Router>
+    <Route path="/" exact component={Join} />
+    <Route path="/chat" component={Chat} />
+  </Router>
+);
 
 export default App;
