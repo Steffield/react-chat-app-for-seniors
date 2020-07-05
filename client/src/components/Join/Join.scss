@@ -1,22 +1,78 @@
-// @import "./variables.scss";
-
+html,
 body {
+  font-family: "Roboto", sans-serif;
+  padding: 0;
   margin: 0;
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
-  font-family: "brandon-grotesque", sans-serif;
-  // background-color: #919191;
-
-  background-color: #ededed;
+  position: relative;
 }
 
-// button {
-//   background-color: #20bf55 !important;
-//   background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%) !important;
-// }
+#root {
+  height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.joinOuterContainer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  width: 70%;
+  align-items: center;
+  float: right;
+  // background-color: #1a1a1d;
+  background: url("./seniorPic.jpeg") no-repeat center center fixed;
+  // height: 600px;
+  opacity: 0.8;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 110% !important;
+}
+
+.joinInnerContainer {
+  position: absolute;
+  left: 40px;
+  width: 25%;
+}
+
+.joinInput {
+  border-radius: 5px;
+  padding: 15px 20px;
+  width: 100%;
+}
+
+input {
+  border: 2px solid #5668f2;
+}
+
+.heading {
+  color: black;
+  font-size: 3em;
+  padding-bottom: 10px;
+  border-bottom: 2px solid black;
+}
+
+.ui.checkbox {
+  outline: #5668f2 !important;
+}
+
+.ui.secondary.button {
+  margin-top: 60px;
+  border: 3px solid #5668f2;
+  background-color: transparent;
+  color: #5668f2;
+  font-size: 1.3em;
+}
+
+.ui.secondary.button:hover {
+  border: 3px solid #5668f2;
+  background-color: #5668f2;
+  color: white;
+}
+
 // .btnBordered {
 //   background-image: -webkit-gradient(
 //     linear,
@@ -29,14 +85,15 @@ body {
 //   -webkit-transition: all 0.5s ease-out;
 //   transition: all 0.5s ease-out;
 // }
-// .btn {
-//   height: 52px;
-//   position: relative;
-//   border-radius: 5px;
-//   width: 100%;
-//   letter-spacing: 0.6px;
-//   box-shadow: none;
-// }
+.btn {
+  height: 52px;
+  position: relative;
+  border-radius: 5px;
+  width: 100%;
+  letter-spacing: 0.6px;
+  box-shadow: none;
+  margin-top: 60px;
+}
 // .btnL {
 //   max-width: 220px;
 //   width: 100%;
@@ -91,7 +148,7 @@ body {
 // }
 
 // .btnBordered .btnMask span {
-//   font-size: 12px;
+//   font-size: 18px;
 //   text-transform: uppercase;
 //   font-weight: 900;
 //   line-height: 18px;
@@ -124,12 +181,40 @@ body {
 //   background-position: 260% 100%;
 // }
 
-// .topImg {
-//   background: url("./seniorPic.jpeg") no-repeat center center fixed;
-//   height: 400px;
-//   opacity: 0.2;
-//   -webkit-background-size: 100% 100%;
-//   -moz-background-size: 100% 100%;
-//   -o-background-size: 100% 100%;
-//   background-size: 100% 110% !important;
-// }
+// // .button {
+// //   color: #fff !important;
+// //   text-transform: uppercase;
+// //   text-decoration: none;
+// //   background: #2979ff;
+// //   padding: 20px;
+// //   border-radius: 5px;
+// //   display: inline-block;
+// //   border: none;
+// //   width: 100%;
+// // }
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mr-15 {
+  margin-right: 15px;
+}
+
+label {
+  font-size: 1.3em !important;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .joinOuterContainer {
+    height: 100%;
+  }
+
+  .joinInnerContainer {
+    width: 90%;
+  }
+}
+
+button:focus {
+  outline: 0;
+}
