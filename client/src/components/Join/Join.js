@@ -47,7 +47,7 @@ const Join = () => {
             onChange={handleRoomChange}
           />
         </div>
-        <div class="ui checked checkbox mt-20 mr-15">
+        <div className="ui checked checkbox mt-20 mr-15">
           <input
             type="checkbox"
             // checked=""
@@ -57,7 +57,7 @@ const Join = () => {
           />
           <label>Increase Font Size</label>
         </div>
-        <div class="ui checked checkbox mt-20">
+        <div className="ui checked checkbox mt-20">
           <input
             type="checkbox"
             name="contrast"
