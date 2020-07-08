@@ -1,0 +1,54 @@
+.form {
+  display: flex;
+  border-top: 2px solid #d3d3d3;
+}
+
+.input {
+  border: none;
+  border-radius: 0;
+  padding: 5%;
+  width: 100%;
+  font-size: 1.2em;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+.mr-2 {
+  margin-right: 5px;
+}
+
+.sendButton {
+  // text-transform: uppercase;
+  // text-decoration: none;
+  // display: inline-block;
+  // border: none;
+  width: 20%;
+}
+
+.btn {
+  height: 52px;
+  border-radius: 5px;
+  letter-spacing: 0.6px;
+  box-shadow: none;
+}
+.ui.secondary.button {
+  border: 3px solid #5668f2;
+  background-color: transparent;
+  color: #5668f2;
+  font-size: 1.3em;
+  justify-content: center;
+}
+
+.ui.secondary.button:hover {
+  border: 3px solid #5668f2;
+  background-color: #5668f2;
+  color: white;
+}
+
+.ui.fluid.action.input {
+  text-align: center;
+}

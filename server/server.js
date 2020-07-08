@@ -21,8 +21,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
 app.use(cors());
 app.use(routes);
 
@@ -57,7 +57,7 @@ io.on("connect", (socket) => {
 
     socket.emit("message", {
       user: "admin",
-      text: `${user.name}, welcome to the chat room ${user.room}`,
+      text: `${user.name}, welcome to the chat room ${user.room}!`,
     });
     socket.broadcast.to(user.room).emit("message", {
       user: "admin",
@@ -80,18 +80,19 @@ io.on("connect", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    const user = removeUser(socket.id);
+    console.log("user left");
+    //   const user = removeUser(socket.id);
 
-    if (user) {
-      io.to(user.room).emit("message", {
-        user: "Admin",
-        text: `${user.name} has left.`,
-      });
-      io.to(user.room).emit("roomData", {
-        room: user.room,
-        users: getUsersInRoom(user.room),
-      });
-    }
+    //   if (user) {
+    //     io.to(user.room).emit("message", {
+    //       user: "Admin",
+    //       text: `${user.name} has left.`,
+    //     });
+    //     io.to(user.room).emit("roomData", {
+    //       room: user.room,
+    //       users: getUsersInRoom(user.room),
+    //     });
+    //   }
   });
 });
 

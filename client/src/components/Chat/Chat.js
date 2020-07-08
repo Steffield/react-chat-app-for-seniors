@@ -3,6 +3,11 @@ import queryString from "query-string";
 import io from "socket.io-client";
 import "./Chat.scss";
 
+import Header from "../Header/Header";
+// import TextContainer from "../TextContainer/TextContainer";
+// import Messages from "../Messages/Messages";
+import Input from "../Input/Input";
+
 let socket;
 
 const Chat = ({ location }) => {
@@ -12,7 +17,7 @@ const Chat = ({ location }) => {
   const [message, setMessage] = useState([]);
   const [messages, setMessages] = useState([]);
 
-  const ServerPort = process.env.PORT || "localhost:3001";
+  const ServerPort = "localhost:3001";
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -52,17 +57,22 @@ const Chat = ({ location }) => {
     }
   };
 
+  console.log(message, messages);
+
   return (
     <div className="outerContainer">
       <div className="innerContainer">
-        <input
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" ? sendMessage(e) : null)}
+        <Header room={room} />
+        {/* <Messages messages={messages} name={name} />*/}
+        <Input
+          message={message}
+          setMessage={setMessage}
+          sendMessage={sendMessage}
         />
       </div>
-    </div>);
+      {/* <TextContainer users={users} /> */}
+    </div>
   );
-
+};
 
 export default Chat;
