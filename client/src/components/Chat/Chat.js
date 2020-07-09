@@ -4,8 +4,8 @@ import io from "socket.io-client";
 import "./Chat.scss";
 
 import Header from "../Header/Header";
-// import TextContainer from "../TextContainer/TextContainer";
-// import Messages from "../Messages/Messages";
+import TextContainer from "../TextContainer/TextContainer";
+import Messages from "../Messages/Messages";
 import Input from "../Input/Input";
 
 let socket;
@@ -60,17 +60,17 @@ const Chat = ({ location }) => {
   console.log(message, messages);
 
   return (
-    <div className="outerContainer">
-      <div className="innerContainer">
+    <div className="chatOuterContainer">
+      <div className="chatInnerContainer">
         <Header room={room} />
-        {/* <Messages messages={messages} name={name} />*/}
+        <Messages messages={messages} name={name} />
         <Input
           message={message}
           setMessage={setMessage}
           sendMessage={sendMessage}
         />
       </div>
-      {/* <TextContainer users={users} /> */}
+      <TextContainer users={users} />
     </div>
   );
 };

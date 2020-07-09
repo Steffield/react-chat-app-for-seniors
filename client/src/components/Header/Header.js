@@ -5,17 +5,19 @@ const Header = ({ room }) => {
   return (
     // eslint-disable-next-line no-unused-expressions
     <div className="outerContainer">
-      <div className="header">
-        <div className="leftInnerContainer">
+      <div className="headerContainer">
+        <div className="leftHeaderContainer">
           <h3 className="chatBoxTitle">
-            {" "}
             <i className="user outline icon mr-2" />
             You are online and in chat room: {room}
           </h3>
         </div>
-        <div className="rightInnerContainer">
+        <div className="rightHeaderContainer">
           <a href="/">
-            <i className="times icon close" />
+            <h3 className="chatBoxTitle">
+              Leave Room
+              <i className="times icon close ml-2" />
+            </h3>
           </a>
         </div>
       </div>

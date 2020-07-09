@@ -1,4 +1,4 @@
-.header {
+.headerContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,7 +25,7 @@
   }
 }
 
-.leftInnerContainer {
+.leftHeaderContainer {
   flex: 0.5;
   display: flex;
   align-items: center;
@@ -37,11 +37,17 @@
   margin-right: 5px;
 }
 
-.rightInnerContainer {
+.ml-2 {
+  margin-left: 5px;
+}
+
+.rightHeaderContainer,
+a {
   display: flex;
   flex: 0.5;
   justify-content: flex-end;
   margin-right: 5%;
+  color: white;
 }
 
 .chatBoxTitle {
