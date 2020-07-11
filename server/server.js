@@ -5,16 +5,16 @@ if (process.env.NODE_ENV !== "production") {
 }
 require("dotenv").config();
 
+const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
-const http = require("http");
 const cors = require("cors");
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
+const routes = require("./routes/router");
 
 const PORT = process.env.PORT || 3001;
 
-const routes = require("./routes/router");
 // const { callback } = require("util");
 
 const app = express();
@@ -27,72 +27,76 @@ app.use(cors());
 app.use(routes);
 
 // If it's production environment!
-if (process.env.NODE_ENV === "production") {
-  const path = require("path");
-  console.log("YOU ARE IN THE PRODUCTION ENV");
-  app.use(
-    "/static",
-    express.static(path.join(__dirname, "../client/build/static"))
-  );
-  app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/build/"));
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+//   const path = require("path");
+//   console.log("YOU ARE IN THE PRODUCTION ENV");
+//   app.use(
+//     "/static",
+//     express.static(path.join(__dirname, "../client/build/static"))
+//   );
+//   app.get("/", (req, res) => {
+//     res.sendFile(path.join(__dirname, "../client/build/"));
+//   });
+// }
 
-// Error handler
-app.use(function (err, req, res, next) {
-  console.log("====== ERROR =======");
-  console.error(err.stack);
-  res.status(500);
-});
+// // Error handler
+// app.use(function (err, req, res, next) {
+//   console.log("====== ERROR =======");
+//   console.error(err.stack);
+//   res.status(500);
+// });
 
 io.on("connect", (socket) => {
   console.log("new socket connection!");
 
   socket.on("join", ({ name, room }, callback) => {
+    console.log(name, room);
     const { error, user } = addUser({ id: socket.id, name, room });
-    if (error) return callback({ error });
+    if (error) return callback(error);
 
     socket.join(user.room);
 
     socket.emit("message", {
       user: "admin",
-      text: `${user.name}, welcome to the chat room ${user.room}!`,
+      text: `${user.name}, welcome to chat room ${user.room}!`,
     });
     socket.broadcast.to(user.room).emit("message", {
       user: "admin",
-      text: `${user.name} is now in the chat room!`,
+      text: `${user.name} is now in this chat room, too!`,
     });
 
     io.to(user.room).emit("roomData", {
       room: user.room,
       users: getUsersInRoom(user.room),
     });
+    console.log(user.room);
 
     callback();
   });
 
   socket.on("sendMessage", (message, callback) => {
+    console.log("sendMessage");
     const user = getUser(socket.id);
 
     io.to(user.room).emit("message", { user: user.name, text: message });
+
     callback();
   });
 
   socket.on("disconnect", () => {
     console.log("user left");
-    //   const user = removeUser(socket.id);
+    const user = removeUser(socket.id);
 
-    //   if (user) {
-    //     io.to(user.room).emit("message", {
-    //       user: "Admin",
-    //       text: `${user.name} has left.`,
-    //     });
-    //     io.to(user.room).emit("roomData", {
-    //       room: user.room,
-    //       users: getUsersInRoom(user.room),
-    //     });
-    //   }
+    if (user) {
+      io.to(user.room).emit("message", {
+        user: "admin",
+        text: `${user.name} has left.`,
+      });
+      io.to(user.room).emit("roomData", {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      });
+    }
   });
 });
 

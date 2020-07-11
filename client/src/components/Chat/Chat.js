@@ -4,7 +4,7 @@ import io from "socket.io-client";
 import "./Chat.scss";
 
 import Header from "../Header/Header";
-import TextContainer from "../TextContainer/TextContainer";
+import SideText from "../SideText/SideText";
 import Messages from "../Messages/Messages";
 import Input from "../Input/Input";
 
@@ -27,12 +27,14 @@ const Chat = ({ location }) => {
     setName(name);
     setRoom(room);
 
+    console.log(socket);
+
     socket.emit("join", { name, room }, (error) => {
       if (error) {
         alert("There has been an error. Please try again!");
       }
     });
-    //unmount
+    //unmount or cleanup lifecycle method
     return () => {
       socket.emit("disconnect");
       socket.off();
@@ -58,11 +60,12 @@ const Chat = ({ location }) => {
   };
 
   console.log(message, messages);
+  console.log(users);
 
   return (
     <div className="chatOuterContainer">
       <div className="chatInnerContainer">
-        <Header room={room} />
+        <Header room={room} name={name} />
         <Messages messages={messages} name={name} />
         <Input
           message={message}
@@ -70,7 +73,7 @@ const Chat = ({ location }) => {
           sendMessage={sendMessage}
         />
       </div>
-      <TextContainer users={users} />
+      <SideText users={users} />
     </div>
   );
 };

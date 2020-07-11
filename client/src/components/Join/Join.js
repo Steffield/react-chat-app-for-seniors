@@ -8,22 +8,21 @@ const Join = () => {
   const [fontSize, setFontSize] = useState(false);
   const [contrastChange, setContrastChange] = useState(false);
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
+  const handleNameChange = (e) => {
+    setName(e.target.value);
   };
 
-  const handleRoomChange = (event) => {
-    // event.preventDefault();
-    setRoom(event.target.value);
+  const handleRoomChange = (e) => {
+    setRoom(e.target.value);
   };
 
-  const handleFontsizeChange = (event) => {
-    setFontSize(event.target.value);
+  const handleFontsizeChange = (e) => {
+    setFontSize(e.target.value);
     console.log(fontSize);
   };
 
-  const handleColorChange = (event) => {
-    setContrastChange(event.target.value);
+  const handleColorChange = (e) => {
+    setContrastChange(e.target.value);
     console.log(contrastChange);
   };
 
@@ -68,7 +67,7 @@ const Join = () => {
           <label>More Color Contrast</label>
         </div>
         <Link
-          onClick={(event) => (!name || !room ? event.preventDefault() : null)}
+          onClick={(e) => (!name || !room ? e.preventDefault() : null)}
           to={`/chat?name=${name}&room=${room}`}
         >
           <button className="ui secondary button btn" type="submit">

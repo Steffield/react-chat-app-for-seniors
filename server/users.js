@@ -1,4 +1,5 @@
 const users = [];
+console.log(users);
 
 //adding users to a room, remove all whitespace and lowerCase, check if name already exists in that room
 const addUser = ({ id, name, room }) => {
@@ -14,7 +15,7 @@ const addUser = ({ id, name, room }) => {
     return { error: "Please, enter a username and chat room!" };
   if (existingUser) {
     //add alert?
-    return { error: "Username is already taken!" };
+    return { error: "Username is already taken in that room!" };
   }
 
   const user = { id, name, room };
@@ -23,6 +24,8 @@ const addUser = ({ id, name, room }) => {
 
   return { user };
 };
+
+console.log(users);
 
 //remove a user from chat by id
 const removeUser = ({ id }) => {
