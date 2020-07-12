@@ -13,8 +13,8 @@ let socket;
 const Chat = ({ location }) => {
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
-  const [users, setUsers] = useState("");
-  const [message, setMessage] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
   const ServerPort = "localhost:3001";
@@ -63,18 +63,20 @@ const Chat = ({ location }) => {
   console.log(users);
 
   return (
-    <div className="chatOuterContainer">
-      <div className="chatInnerContainer">
-        <Header room={room} name={name} />
-        <Messages messages={messages} name={name} />
-        <Input
-          message={message}
-          setMessage={setMessage}
-          sendMessage={sendMessage}
-        />
+    <>
+      <Header room={room} name={name} />
+      <div className="chatOuterContainer">
+        <div className="chatInnerContainer">
+          <Messages messages={messages} name={name} />
+          <Input
+            message={message}
+            setMessage={setMessage}
+            sendMessage={sendMessage}
+          />
+        </div>
+        <SideText users={users} />
       </div>
-      <SideText users={users} />
-    </div>
+    </>
   );
 };
 

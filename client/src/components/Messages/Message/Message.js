@@ -20,12 +20,14 @@ const Message = ({ message: { user, text }, name }) => {
       <div className="messageBubble bgUser">
         <p className="messageText">{ReactEmoji.emojify(text)}</p>
       </div>
+      {/* <p className="subtext">{time}</p> */}
     </div>
   ) : (
-    <div className="messageContainer left floated">
+    <div className="messageContainer justifyStart left floated">
       <div className="messageBubble bgOtherUser">
         <p className="messageText">{ReactEmoji.emojify(text)}</p>
       </div>
+      {/* <p className="subtext">{time}</p> */}
       <p className="sentText pl-10">{user}</p>
     </div>
   );

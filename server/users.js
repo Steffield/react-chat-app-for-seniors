@@ -1,10 +1,12 @@
 const users = [];
 console.log(users);
 
+//each user has id, username, and room
 //adding users to a room, remove all whitespace and lowerCase, check if name already exists in that room
 const addUser = ({ id, name, room }) => {
   name = name.trim().toLowerCase();
   room = room.trim().toLowerCase();
+  console.log(name, room);
 
   //if there is already user with that name in that room user can not sign in
   const existingUser = users.find(
@@ -25,7 +27,7 @@ const addUser = ({ id, name, room }) => {
   return { user };
 };
 
-console.log(users);
+console.log(`Those are the users: ${users}`);
 
 //remove a user from chat by id
 const removeUser = ({ id }) => {
@@ -40,12 +42,8 @@ const removeUser = ({ id }) => {
 };
 
 //find a user by id
-const getUser = ({ id }) => {
-  users.find((user) => user.id === id);
-};
+const getUser = (id) => users.find((user) => user.id === id);
 //find all users in specific room
-const getUsersInRoom = ({ room }) => {
-  users.filter((user) => user.room === room);
-};
+const getUsersInRoom = (room) => users.filter((user) => user.room === room);
 
 module.exports = { addUser, removeUser, getUser, getUsersInRoom };

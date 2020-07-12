@@ -1,12 +1,13 @@
 .bgUser {
-  background-color: black;
+  background-color: black !important;
   color: white;
 }
 
-.otherUser {
-  background-color: white;
-  color: #5668f2;
-}
+// .bgOtherUser {
+//   background-color: white !important;
+//   outline-color: black !important;
+//   color: #5668f2 !important;
+// }
 
 .messageBubble {
   background: #5668f2;
