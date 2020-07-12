@@ -7,14 +7,14 @@ const Header = ({ name, room }) => {
     <div className="outerContainer">
       <div className="headerContainer">
         <div className="leftHeaderContainer">
-          <h3 className="chatBoxTitle">
+          <h3 className="chatBoxTitle ">
             <i className="user outline icon mr-2" />
             {name}, you are online and in chat room: {room}
           </h3>
         </div>
-        <div className="rightHeaderContainer">
+        <div className="rightHeaderContainer ">
           <a href="/">
-            <h3 className="chatBoxTitle">
+            <h3 className="chatBoxTitle ">
               Leave chat room
               <i className="times icon close ml-2" />
             </h3>

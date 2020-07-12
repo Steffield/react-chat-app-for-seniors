@@ -16,7 +16,65 @@ const Chat = ({ location }) => {
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [fontSize, setFontSize] = useState(false);
+  const [colorContrast, setColorContrast] = useState(false);
 
+  const handleFontsizeChange = () => {
+    fontSize === false ? setFontSize(true) : setFontSize(false);
+    console.log(fontSize);
+  };
+
+  const handleColorChange = () => {
+    colorContrast === false ? setColorContrast(true) : setColorContrast(false);
+    console.log(colorContrast);
+  };
+
+  useEffect(() => {
+    const body = document.querySelector("body");
+    const header = document.querySelector(".chatBoxTitle");
+    const h2 = document.querySelector("h2");
+    const h3 = document.querySelector("h3");
+    const sideText = document.querySelector(".sideText");
+    const sendBtn = document.querySelector(".sendButton");
+    if (fontSize === false) {
+      body.style.fontSize = "1.1em";
+      header.style.fontSize = "1.1em";
+      sideText.style.fontSize = "1.1em";
+      h2.style.fontSize = "24px";
+      h3.style.fontSize = "1.3em";
+      sendBtn.style.fontSize = "1.1em";
+    } else {
+      body.style.fontSize = "1.5em";
+      header.style.fontSize = "1.5em";
+      sideText.style.fontSize = "1.5em";
+      h2.style.fontSize = "1.3em";
+      h3.style.fontSize = "1.3em";
+      sendBtn.style.fontSize = "1.5em";
+    }
+    console.log(body.style.fontSize);
+  }, [handleFontsizeChange]);
+
+  useEffect(() => {
+    const body = document.querySelector("body");
+    const label = document.querySelector(".checkbox");
+    const sideText = document.querySelector(".sideText");
+    const sendBtn = document.querySelector(".sendButton");
+    const people = document.querySelector("ul");
+    if (colorContrast === false) {
+      body.style.backgroundColor = "#ededed";
+      body.style.color = "black";
+      people.style.color = "black";
+      sideText.style.color = "black";
+      label.style.color = "black";
+    } else {
+      body.style.backgroundColor = "black";
+      body.style.color = "white";
+      sideText.style.color = "white";
+      people.style.color = "white";
+      label.style.color = "white";
+    }
+    console.log(body.style.fontSize);
+  }, [handleFontsizeChange]);
   const ServerPort = "localhost:3001";
 
   useEffect(() => {
@@ -74,7 +132,11 @@ const Chat = ({ location }) => {
             sendMessage={sendMessage}
           />
         </div>
-        <SideText users={users} />
+        <SideText
+          users={users}
+          handleColorChange={handleColorChange}
+          handleFontsizeChange={handleFontsizeChange}
+        />
       </div>
     </>
   );

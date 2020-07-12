@@ -6,9 +6,14 @@ const Input = ({ message, setMessage, sendMessage }) => {
     // eslint-disable-next-line no-unused-expressions
     <form className="form">
       <div className="ui fluid action input">
+        <label for="chatInput" className="sr-only">
+          Type your message here
+        </label>
         <input
           className="input"
+          id="chatInput"
           type="text"
+          label="type message here"
           placeholder="Type a message to the users in the room."
           value={message}
           onChange={(e) => setMessage(e.target.value)}

@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 html,
 body {
   font-family: "Roboto", sans-serif;
@@ -12,6 +14,11 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+h2,
+h3 {
+  padding: 20px 0 !important;
 }
 
 .joinOuterContainer {
@@ -39,7 +46,7 @@ body {
 }
 
 .joinInput {
-  border-radius: 5px;
+  border-radius: $br;
   padding: 15px 20px;
   width: 100%;
 }
@@ -57,20 +64,22 @@ input {
 }
 
 .ui.checkbox {
-  outline: #5668f2 !important;
+  outline: $blue !important;
 }
 
 .ui.secondary.button {
   margin-top: 60px;
-  border: 3px solid #5668f2;
+  border: 5px solid $blue;
   background-color: transparent;
-  color: #5668f2;
-  font-size: 1.3em;
+  color: $blue;
+  font-size: 2em;
+  padding: 5px;
+  // text-shadow: 1px 1px #226593;
 }
 
 .ui.secondary.button:hover {
-  border: 3px solid #5668f2;
-  background-color: #5668f2;
+  border: 3px solid $blue;
+  background-color: $blue;
   color: white;
 }
 

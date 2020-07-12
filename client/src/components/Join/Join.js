@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { css } from "emotion";
 import "./Join.scss";
 
 const Join = () => {
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
-  const [fontSize, setFontSize] = useState(false);
-  const [contrastChange, setContrastChange] = useState(false);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -16,63 +15,43 @@ const Join = () => {
     setRoom(e.target.value);
   };
 
-  const handleFontsizeChange = (e) => {
-    setFontSize(e.target.value);
-    console.log(fontSize);
-  };
-
-  const handleColorChange = (e) => {
-    setContrastChange(e.target.value);
-    console.log(contrastChange);
-  };
-
   return (
     <div className="joinOuterContainer">
       <div className="joinInnerContainer">
         <h1 className="heading">Join a Chatroom</h1>
         <div>
+          <label for="enterName" className="sr-only">
+            Enter Your Name
+          </label>
           <input
             placeholder="Enter Your Name"
+            id="enterName"
             className="joinInput"
             type="text"
             onChange={handleNameChange}
           />
         </div>
         <div>
+          <label for="enterRoom" className="sr-only">
+            Enter desired chat room
+          </label>
+
           <input
             placeholder="Enter the Chatroom Number"
+            id="enterRoom"
             className="joinInput mt-20"
             type="text"
             onChange={handleRoomChange}
           />
         </div>
-        <div className="ui checked checkbox mt-20 mr-15">
-          <input
-            type="checkbox"
-            // checked=""
-            name="fontsize"
-            value="true"
-            onChange={handleFontsizeChange}
-          />
-          <label>Increase Font Size</label>
-        </div>
-        <div className="ui checked checkbox mt-20">
-          <input
-            type="checkbox"
-            name="contrast"
-            // checked=""
-            value="true"
-            onChange={handleColorChange}
-          />
-          <label>More Color Contrast</label>
-        </div>
+
         <Link
           onClick={(e) => (!name || !room ? e.preventDefault() : null)}
           to={`/chat?name=${name}&room=${room}`}
         >
           <button className="ui secondary button btn" type="submit">
             {/* <div className="btnMask"> */}
-            <span>Sign In</span>
+            Start Chatting
             {/* </div> */}
           </button>
         </Link>
