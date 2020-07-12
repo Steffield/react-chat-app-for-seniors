@@ -5,99 +5,108 @@ if (process.env.NODE_ENV !== "production") {
 }
 require("dotenv").config();
 
+const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
-const http = require("http");
 const cors = require("cors");
+
+const routes = require("./routes/router");
+const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 
 const PORT = process.env.PORT || 3001;
 
-const routes = require("./routes/router");
+// const { callback } = require("util");
 
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-// If it's production environment!
-if (process.env.NODE_ENV === "production") {
-  const path = require("path");
-  console.log("YOU ARE IN THE PRODUCTION ENV");
-  app.use(
-    "/static",
-    express.static(path.join(__dirname, "../client/build/static"))
-  );
-  app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/build/"));
-  });
-}
-
-// Error handler
-app.use(function (err, req, res, next) {
-  console.log("====== ERROR =======");
-  console.error(err.stack);
-  res.status(500);
-});
-
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
 app.use(cors());
 app.use(routes);
 
+// If it's production environment!
+// if (process.env.NODE_ENV === "production") {
+//   const path = require("path");
+//   console.log("YOU ARE IN THE PRODUCTION ENV");
+//   app.use(
+//     "/static",
+//     express.static(path.join(__dirname, "../client/build/static"))
+//   );
+//   app.get("/", (req, res) => {
+//     res.sendFile(path.join(__dirname, "../client/build/"));
+//   });
+// }
+
+// // Error handler
+// app.use(function (err, req, res, next) {
+//   console.log("====== ERROR =======");
+//   console.error(err.stack);
+//   res.status(500);
+// });
+
 io.on("connect", (socket) => {
-  console.log("we have a connection!");
-  socket.on("disconnect", () => {
-    console.log("user left");
+  console.log("new socket connection!");
+
+  socket.on("join", ({ name, room }, callback) => {
+    console.log(name, room);
+    const { user } = addUser({ id: socket.id, name, room });
+    // if (error) return callback(error);
+    console.log("user added");
+    console.log(user);
+    socket.join(user.room);
+
+    socket.emit("message", {
+      user: "admin",
+      text: `${user.name}, welcome to chat room ${user.room}!`,
+    });
+    socket.broadcast.to(user.room).emit("message", {
+      user: "admin",
+      text: `${user.name} is now in this chat room, too!`,
+    });
+
+    io.to(user.room).emit("roomData", {
+      room: user.room,
+      users: getUsersInRoom(user.room),
+    });
+    callback();
   });
 
-  // socket.on("join", ({ name, room }, callback) => {
-  //   const { error, user } = addUser({ id: socket.id, name, room });
+  socket.on("sendMessage", (message, callback) => {
+    console.log("sendMessage");
+    // console.log({ message });
+    // console.log(socket.id);
+    // console.log(`test ${user}`);
+    // console.log(`does it show ${user.room}`);
+    const user = getUser(socket.id);
+    console.log(user);
 
-  //   if (error) return callback(error);
+    io.to(user.room).emit("message", {
+      user: user.name,
+      text: message,
+    });
+    console.log(message);
 
-  //   socket.join(user.room);
+    callback();
+  });
 
-  //   socket.emit("message", {
-  //     user: "admin",
-  //     text: `${user.name}, welcome to room ${user.room}.`,
-  //   });
-  //   socket.broadcast
-  //     .to(user.room)
-  //     .emit("message", { user: "admin", text: `${user.name} has joined!` });
+  socket.on("disconnect", () => {
+    console.log("user left");
+    const user = removeUser(socket.id);
 
-  //   io.to(user.room).emit("roomData", {
-  //     room: user.room,
-  //     users: getUsersInRoom(user.room),
-  //   });
-
-  //   callback();
+    if (user) {
+      io.to(user.room).emit("message", {
+        user: "admin",
+        text: `${user.name} has left.`,
+      });
+      io.to(user.room).emit("roomData", {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      });
+    }
+  });
 });
-
-//   socket.on("sendMessage", (message, callback) => {
-//     const user = getUser(socket.id);
-
-//     io.to(user.room).emit("message", { user: user.name, text: message });
-
-//     callback();
-//   });
-
-//   socket.on("disconnect", () => {
-//     const user = removeUser(socket.id);
-
-//     if (user) {
-//       io.to(user.room).emit("message", {
-//         user: "Admin",
-//         text: `${user.name} has left.`,
-//       });
-//       io.to(user.room).emit("roomData", {
-//         room: user.room,
-//         users: getUsersInRoom(user.room),
-//       });
-//     }
-//   });
-// });
 
 // Starting Server
 server.listen(PORT, () => {

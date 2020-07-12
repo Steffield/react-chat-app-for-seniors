@@ -1,4 +1,4 @@
-// @import "./variables.scss";
+@import "./variables.scss";
 
 body {
   margin: 0;
@@ -7,10 +7,64 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
-  font-family: "brandon-grotesque", sans-serif;
+  // font-family: "brandon-grotesque", sans-serif;
   // background-color: #919191;
 
   background-color: #ededed;
+}
+
+.ui.checkbox {
+  outline: $blue !important;
+}
+
+.ui.secondary.button {
+  margin-top: 60px;
+  border: 5px solid $blue;
+  background-color: transparent;
+  color: $blue;
+  font-size: 1.7em;
+  padding: 5px;
+  // text-shadow: 1px 1px #226593;
+}
+
+.ui.secondary.button:hover {
+  border: 3px solid $blue;
+  background-color: $blue;
+  color: white;
+}
+
+.sr-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+// .btnBordered {
+//   background-image: -webkit-gradient(
+//     linear,
+//     left top,
+//     right top,
+//     from(#b77dfb),
+//     to(#5668f2)
+//   );
+//   background-image: linear-gradient(to right, #b77dfb, #5668f2);
+//   -webkit-transition: all 0.5s ease-out;
+//   transition: all 0.5s ease-out;
+// }
+.btn {
+  height: 52px;
+  position: relative;
+  border-radius: 5px;
+  width: 100%;
+  letter-spacing: 0.6px;
+  box-shadow: none;
+  margin-top: 60px;
+  text-align: center;
 }
 
 // button {
