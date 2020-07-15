@@ -24,7 +24,11 @@ const Message = ({ message: { user, text }, name }) => {
     </div>
   ) : (
     <div className="messageContainer justifyStart left floated">
-      <div className="messageBubble bgOtherUser">
+      <div
+        className={`messageBubble bgOtherUser ${
+          user === "admin" ? "adminBubble" : ""
+        }`}
+      >
         <p className="messageText">{ReactEmoji.emojify(text)}</p>
       </div>
       {/* <p className="subtext">{time}</p> */}

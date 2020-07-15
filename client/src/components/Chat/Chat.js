@@ -7,6 +7,7 @@ import Header from "../Header/Header";
 import SideText from "../SideText/SideText";
 import Messages from "../Messages/Messages";
 import Input from "../Input/Input";
+import WeatherInfo from "../WeatherInfo/WeatherInfo";
 
 let socket;
 
@@ -123,6 +124,8 @@ const Chat = ({ location }) => {
   return (
     <>
       <Header room={room} name={name} />
+      <WeatherInfo />
+
       <div className="chatOuterContainer">
         <div className="chatInnerContainer">
           <Messages messages={messages} name={name} />

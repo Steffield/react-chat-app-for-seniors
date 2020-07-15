@@ -46,6 +46,7 @@ const Join = () => {
         </div>
 
         <Link
+          className="joinBtn"
           onClick={(e) => (!name || !room ? e.preventDefault() : null)}
           to={`/chat?name=${name}&room=${room}`}
         >
