@@ -52,7 +52,7 @@ const SideText = ({ users, handleColorChange, handleFontsizeChange }) => {
               <ul>
                 {users.map(({ name }, i) => (
                   <li key={i} className="activeItem">
-                    {name}
+                    {name.charAt(0).toUpperCase() + name.slice(1)}
                     {/* <img alt="Online Icon" src={onlineIcon}/> */}
                   </li>
                 ))}

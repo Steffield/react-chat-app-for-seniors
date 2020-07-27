@@ -5,7 +5,8 @@ import "./Message.scss";
 const Message = ({ message: { user, text }, name }) => {
   let isSentByCurrentUser = false;
 
-  const trimmedName = name.trim().toLowerCase();
+  let trimmedName = name.trim().toLowerCase();
+  trimmedName = trimmedName.charAt(0).toUpperCase() + name.slice(1);
   console.log(name, user);
 
   if (user === trimmedName) {

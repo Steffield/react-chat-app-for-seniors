@@ -3,11 +3,11 @@ import queryString from "query-string";
 import io from "socket.io-client";
 import "./Chat.scss";
 
-import Header from "../Header/Header";
-import SideText from "../SideText/SideText";
-import Messages from "../Messages/Messages";
-import Input from "../Input/Input";
-import WeatherInfo from "../WeatherInfo/WeatherInfo";
+import Header from "../../components/Header/Header";
+import SideText from "../../components/SideText/SideText";
+import Messages from "../../components/Messages/Messages";
+import Input from "../../components/Input/Input";
+// import WeatherInfo from "../../components/WeatherInfo/WeatherInfo";
 
 let socket;
 
@@ -124,7 +124,7 @@ const Chat = ({ location }) => {
   return (
     <>
       <Header room={room} name={name} />
-      <WeatherInfo />
+      {/* <WeatherInfo /> */}
 
       <div className="chatOuterContainer">
         <div className="chatInnerContainer">

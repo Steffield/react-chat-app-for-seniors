@@ -13,8 +13,7 @@
 }
 
 .user.outline {
-  animation: online 2s alternate;
-  // animation-direction: alternate;
+  animation: online 2s infinite;
 }
 
 @keyframes online {

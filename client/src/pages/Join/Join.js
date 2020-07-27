@@ -20,7 +20,7 @@ const Join = () => {
       <div className="joinInnerContainer">
         <h1 className="heading">Join a Chatroom</h1>
         <div>
-          <label for="enterName" className="sr-only">
+          <label htmlFor="enterName" className="sr-only">
             Enter Your Name
           </label>
           <input
@@ -32,7 +32,7 @@ const Join = () => {
           />
         </div>
         <div>
-          <label for="enterRoom" className="sr-only">
+          <label htmlFor="enterRoom" className="sr-only">
             Enter desired chat room
           </label>
 
