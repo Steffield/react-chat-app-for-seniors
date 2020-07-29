@@ -1,3 +1,5 @@
+@import "../../../variables.scss";
+
 .bgUser {
   background-color: black !important;
   color: white;
@@ -10,12 +12,16 @@
 // }
 
 .messageBubble {
-  background: #5668f2;
+  background: $lightblue;
   border-radius: 20px;
-  padding: 5px 20px;
+  padding: 5px 15px;
   color: white;
   display: inline-block;
   max-width: 80%;
+}
+
+.adminBubble {
+  background: $blue;
 }
 
 .messageText {

@@ -5,6 +5,7 @@ console.log(users);
 //adding users to a room, remove all whitespace and lowerCase, check if name already exists in that room
 const addUser = ({ id, name, room }) => {
   name = name.trim().toLowerCase();
+  name = name.charAt(0).toUpperCase() + name.slice(1);
   room = room.trim().toLowerCase();
   console.log(name, room);
 

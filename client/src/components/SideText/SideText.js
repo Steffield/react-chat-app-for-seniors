@@ -16,11 +16,12 @@ const SideText = ({ users, handleColorChange, handleFontsizeChange }) => {
         <div>
           <h2>Welcome to our simple and adjustable chat room!</h2>
           <h3>
-            Check if you the right people are in this chat room and if the are
-            start sending them messages. If they are not, check if you are in
-            the right chat room by looking at the top of the screen and if it
-            isn't the right room , leave the chat room by clicking the x in the
-            top right of the screen.
+            Check if you are seeing the right people in this chat room and start
+            sending them messages. If they are not the people you expected,
+            check if you are in the right chat room by looking at the top of the
+            screen. If it isn't the right room , leave the chat room by clicking
+            the x in the top right of the screen. If you would prefer bigger
+            font or more contrast, use the toggle buttons below.
           </h3>
         </div>
         <div>
@@ -52,7 +53,7 @@ const SideText = ({ users, handleColorChange, handleFontsizeChange }) => {
               <ul>
                 {users.map(({ name }, i) => (
                   <li key={i} className="activeItem">
-                    {name}
+                    {name.charAt(0).toUpperCase() + name.slice(1)}
                     {/* <img alt="Online Icon" src={onlineIcon}/> */}
                   </li>
                 ))}

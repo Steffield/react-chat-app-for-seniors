@@ -5,7 +5,8 @@ import "./Message.scss";
 const Message = ({ message: { user, text }, name }) => {
   let isSentByCurrentUser = false;
 
-  const trimmedName = name.trim().toLowerCase();
+  let trimmedName = name.trim().toLowerCase();
+  trimmedName = trimmedName.charAt(0).toUpperCase() + name.slice(1);
   console.log(name, user);
 
   if (user === trimmedName) {
@@ -24,7 +25,11 @@ const Message = ({ message: { user, text }, name }) => {
     </div>
   ) : (
     <div className="messageContainer justifyStart left floated">
-      <div className="messageBubble bgOtherUser">
+      <div
+        className={`messageBubble bgOtherUser ${
+          user === "admin" ? "adminBubble" : ""
+        }`}
+      >
         <p className="messageText">{ReactEmoji.emojify(text)}</p>
       </div>
       {/* <p className="subtext">{time}</p> */}

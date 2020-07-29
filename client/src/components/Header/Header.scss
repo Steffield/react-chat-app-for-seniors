@@ -13,8 +13,7 @@
 }
 
 .user.outline {
-  animation: online 2s alternate;
-  // animation-direction: alternate;
+  animation: online 2s infinite;
 }
 
 @keyframes online {
@@ -53,4 +52,10 @@ a {
 
 .chatBoxTitle {
   margin-right: 5%;
+}
+
+.joinBtn {
+  display: inline-block;
+  // width: 100%;
+  // margin-right: 0;
 }

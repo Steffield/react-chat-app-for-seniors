@@ -3,10 +3,11 @@ import queryString from "query-string";
 import io from "socket.io-client";
 import "./Chat.scss";
 
-import Header from "../Header/Header";
-import SideText from "../SideText/SideText";
-import Messages from "../Messages/Messages";
-import Input from "../Input/Input";
+import Header from "../../components/Header/Header";
+import SideText from "../../components/SideText/SideText";
+import Messages from "../../components/Messages/Messages";
+import Input from "../../components/Input/Input";
+// import WeatherInfo from "../../components/WeatherInfo/WeatherInfo";
 
 let socket;
 
@@ -18,6 +19,8 @@ const Chat = ({ location }) => {
   const [messages, setMessages] = useState([]);
   const [fontSize, setFontSize] = useState(false);
   const [colorContrast, setColorContrast] = useState(false);
+
+  const ServerPort = "localhost:3001";
 
   const handleFontsizeChange = () => {
     fontSize === false ? setFontSize(true) : setFontSize(false);
@@ -75,7 +78,6 @@ const Chat = ({ location }) => {
     }
     console.log(body.style.fontSize);
   }, [handleFontsizeChange]);
-  const ServerPort = "localhost:3001";
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -123,6 +125,8 @@ const Chat = ({ location }) => {
   return (
     <>
       <Header room={room} name={name} />
+      {/* <WeatherInfo /> */}
+
       <div className="chatOuterContainer">
         <div className="chatInnerContainer">
           <Messages messages={messages} name={name} />
