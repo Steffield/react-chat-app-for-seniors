@@ -20,6 +20,8 @@ const Chat = ({ location }) => {
   const [fontSize, setFontSize] = useState(false);
   const [colorContrast, setColorContrast] = useState(false);
 
+  const ServerPort = "localhost:3001";
+
   const handleFontsizeChange = () => {
     fontSize === false ? setFontSize(true) : setFontSize(false);
     console.log(fontSize);
@@ -76,7 +78,6 @@ const Chat = ({ location }) => {
     }
     console.log(body.style.fontSize);
   }, [handleFontsizeChange]);
-  const ServerPort = "localhost:3001";
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
