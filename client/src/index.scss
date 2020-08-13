@@ -13,6 +13,21 @@ body {
   background-color: #ededed;
 }
 
+.default-font {
+  font-size: $defaultFont;
+}
+.big-font {
+  font-size: $bigFont;
+}
+
+.default-contrast {
+  background-color: $bgColorLight;
+  color: $colorLightTheme;
+}
+.increased-contrast {
+  background-color: $bgColorDark;
+  color: $colorDarkTheme;
+}
 .ui.checkbox {
   outline: $blue !important;
 }
