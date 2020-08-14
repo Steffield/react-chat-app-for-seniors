@@ -63,7 +63,7 @@ const Chat = ({ location }) => {
       sideText.style.height = "90%";
     }
     console.log(body.style.fontSize);
-  }, [handleFontsizeChange]);
+  }, [fontSize]);
 
   useEffect(() => {
     const body = document.querySelector("body");
@@ -84,7 +84,7 @@ const Chat = ({ location }) => {
       people.style.color = "white";
     }
     console.log(body.style.fontSize);
-  }, [handleColorChange]);
+  }, [colorContrast]);
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);

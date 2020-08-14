@@ -10,7 +10,8 @@ const express = require("express");
 const socketio = require("socket.io");
 const cors = require("cors");
 
-const routes = require("./routes/router");
+///make app more complex and add more routes and db later
+// const routes = require("./routes/router");
 const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 
 const PORT = process.env.PORT || 3001;
@@ -21,10 +22,10 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cors());
-app.use(routes);
+// app.use(routes);
 
 // If it's production environment!
 if (process.env.NODE_ENV === "production") {
@@ -40,11 +41,11 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // // Error handler
-// app.use(function (err, req, res, next) {
-//   console.log("====== ERROR =======");
-//   console.error(err.stack);
-//   res.status(500);
-// });
+app.use(function (err, req, res, next) {
+  console.log("====== ERROR =======");
+  console.error(err.stack);
+  res.status(500);
+});
 
 io.on("connect", (socket) => {
   console.log("new socket connection!");
