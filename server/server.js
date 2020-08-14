@@ -21,8 +21,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cors());
 app.use(routes);
 
@@ -40,11 +40,11 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // // Error handler
-// app.use(function (err, req, res, next) {
-//   console.log("====== ERROR =======");
-//   console.error(err.stack);
-//   res.status(500);
-// });
+app.use(function (err, req, res, next) {
+  console.log("====== ERROR =======");
+  console.error(err.stack);
+  res.status(500);
+});
 
 io.on("connect", (socket) => {
   console.log("new socket connection!");
