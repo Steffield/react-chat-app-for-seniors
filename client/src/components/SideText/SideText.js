@@ -15,34 +15,38 @@ const SideText = ({ users, handleColorChange, handleFontsizeChange }) => {
       <aside className="sideText">
         <div>
           <h2>Welcome to our simple and adjustable chat room!</h2>
-          <h3>
-            Check if you are seeing the right people in this chat room and start
-            sending them messages. If they are not the people you expected,
-            check if you are in the right chat room by looking at the top of the
-            screen. If it isn't the right room , leave the chat room by clicking
-            the x in the top right of the screen. If you would prefer bigger
-            font or more contrast, use the toggle buttons below.
+          <h3 className="instruction">
+            At the top left you see the name of your chat room and everyone in
+            the chatroom is listed on the bottom right. If you are in the wrong
+            room or want to exit the chat, click the top right X to leave the
+            chat room. You can increase the font size and contrast below.
           </h3>
         </div>
         <div>
           <h3>
-            <div className="ui toggle checkbox mt-20 mr-15">
+            <div className="checkbox mt-20 mr-15">
               <input
                 type="checkbox"
+                className="toggle"
                 id="changeFontSize"
                 name="fontsize"
                 onChange={handleFontsizeChange}
               />
-              <label for="changeFontSize">Increase Front Size</label>
+              <label for="changeFontSize" style={{ marginLeft: "15px" }}>
+                Increase Front Size
+              </label>
             </div>
-            <div className="ui toggle checkbox mt-20 mr-15">
+            <div className="checkbox mt-20 mr-15">
               <input
                 type="checkbox"
+                className="toggle"
                 id="changeContrast"
                 name="contrast"
                 onChange={handleColorChange}
               />
-              <label for="changeContrast">More Color Contrast</label>
+              <label for="changeContrast" style={{ marginLeft: "15px" }}>
+                More Color Contrast
+              </label>
             </div>
           </h3>
         </div>

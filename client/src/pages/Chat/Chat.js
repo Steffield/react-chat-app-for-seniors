@@ -37,8 +37,10 @@ const Chat = ({ location }) => {
     const header = document.querySelector(".chatBoxTitle");
     const h2 = document.querySelector("h2");
     const h3 = document.querySelector("h3");
+    const inst = document.querySelector(".instruction");
     const sideText = document.querySelector(".sideText");
     const sendBtn = document.querySelector(".sendButton");
+    const chat = document.querySelector(".chatInnerContainer");
     if (fontSize === false) {
       body.style.fontSize = "1.1em";
       header.style.fontSize = "1.1em";
@@ -46,6 +48,9 @@ const Chat = ({ location }) => {
       h2.style.fontSize = "24px";
       h3.style.fontSize = "1.3em";
       sendBtn.style.fontSize = "1.1em";
+      inst.style.fontSize = "18px";
+      chat.style.height = "80%";
+      sideText.style.height = "80%";
     } else {
       body.style.fontSize = "1.5em";
       header.style.fontSize = "1.5em";
@@ -53,6 +58,9 @@ const Chat = ({ location }) => {
       h2.style.fontSize = "1.3em";
       h3.style.fontSize = "1.3em";
       sendBtn.style.fontSize = "1.5em";
+      inst.style.fontSize = "24px";
+      chat.style.height = "90%";
+      sideText.style.height = "90%";
     }
     console.log(body.style.fontSize);
   }, [handleFontsizeChange]);
@@ -63,21 +71,20 @@ const Chat = ({ location }) => {
     const sideText = document.querySelector(".sideText");
     const sendBtn = document.querySelector(".sendButton");
     const people = document.querySelector("ul");
+
     if (colorContrast === false) {
       body.style.backgroundColor = "#ededed";
       body.style.color = "black";
       people.style.color = "black";
       sideText.style.color = "black";
-      label.style.color = "black";
     } else {
       body.style.backgroundColor = "black";
       body.style.color = "white";
       sideText.style.color = "white";
       people.style.color = "white";
-      label.style.color = "white";
     }
     console.log(body.style.fontSize);
-  }, [handleFontsizeChange]);
+  }, [handleColorChange]);
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
