@@ -20,7 +20,7 @@ const Chat = ({ location }) => {
   const [fontSize, setFontSize] = useState(false);
   const [colorContrast, setColorContrast] = useState(false);
 
-  const ServerPort = "localhost:3001";
+  const EndPoint = "https://senior-chat-app.herokuapp.com/" || "localhost:3001";
 
   const handleFontsizeChange = () => {
     fontSize === false ? setFontSize(true) : setFontSize(false);
@@ -89,7 +89,7 @@ const Chat = ({ location }) => {
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
 
-    socket = io(ServerPort);
+    socket = io(EndPoint);
 
     setName(name);
     setRoom(room);
@@ -106,7 +106,7 @@ const Chat = ({ location }) => {
       socket.emit("disconnect");
       socket.off();
     };
-  }, [ServerPort, location.search]);
+  }, [EndPoint, location.search]);
 
   //useEffect for handling messages
   useEffect(() => {
