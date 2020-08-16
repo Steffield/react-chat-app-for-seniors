@@ -11,7 +11,7 @@ const socketio = require("socket.io");
 const cors = require("cors");
 
 ///make app more complex and add more routes and db later
-const routes = require("./routes/router");
+// const routes = require("./routes/router");
 const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 
 const PORT = process.env.PORT || 3001;
@@ -25,7 +25,7 @@ const io = socketio(server);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-app.use(routes);
+// app.use(routes);
 
 // If it's production environment!
 if (process.env.NODE_ENV === "production") {
