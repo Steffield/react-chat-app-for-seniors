@@ -11,7 +11,7 @@ module.exports = function (app) {
     app.use(
       ["/", "/chat"],
       createProxyMiddleware({
-        target: "https://senior-chat-app.herokuapp.com/",
+        target: "https://senior-react-chat-app.herokuapp.com/",
       })
     );
   }
