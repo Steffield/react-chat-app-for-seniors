@@ -20,7 +20,8 @@ const Chat = ({ location }) => {
   const [fontSize, setFontSize] = useState(false);
   const [colorContrast, setColorContrast] = useState(false);
 
-  const EndPoint = process.env.PORT || "localhost:3001";
+  const EndPoint =
+    "https://senior-react-chat-app.herokuapp.com/" || "localhost:3001";
 
   const handleFontsizeChange = () => {
     fontSize === false ? setFontSize(true) : setFontSize(false);
