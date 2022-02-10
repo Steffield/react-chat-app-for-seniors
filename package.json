@@ -32,7 +32,7 @@
     "if-env": "^1.0.4",
     "moment": "^2.27.0",
     "mongoose": "^5.9.19",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "react-scripts": "^3.4.1",
     "socket.io": "^2.3.0",
     "yarn": "^1.22.4"
